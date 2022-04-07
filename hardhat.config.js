@@ -18,7 +18,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 task("deploy-testnets", "Deploys contract on a provided network").setAction(
   async (taskArguments, hre, runSuper) => {
-    const deployElectionContract = require("./scripts/deploy");
+    const deployElectionContract = require("./scripts/deploy/deploy");
     await deployElectionContract(taskArguments);
     await hre.run('print', { message: "Done!" })
   }
@@ -27,7 +27,7 @@ task("deploy-testnets", "Deploys contract on a provided network").setAction(
 task("deploy-mainnet", "Deploys contract on a provided network")
   .addParam("privateKey", "Please provide the private key")
   .setAction(async ({ privateKey }) => {
-    const deployElectionContract = require("./scripts/deploy-with-params");
+    const deployElectionContract = require("./scripts/deploy/deploy-with-params");
     await deployElectionContract(privateKey);
   });
 
